@@ -9,12 +9,12 @@ jobs:
     steps:
       - name: Create a file
         run: |
-          echo "Hello World" > hello.txt
+          echo "Hello World" > junkyfile.txt
       - name: Upload the file
         uses: actions/upload-artifact@v2
         with:
           name: bundle
-          path: hello.txt
+          path: junkyfile.txt
 
   job_2:
     name: Echo and modify the file
@@ -27,8 +27,8 @@ jobs:
           name: bundle
       - name: Echo and modify
         run: |
-          cat hello.txt
-          echo "More" >> hello.txt
+          cat junkyfile.txt
+          echo "More  .... adding to junkyfile" >> junkyfile.txt
       - name: Upload the file (again)
         uses: actions/upload-artifact@v2
         with:
