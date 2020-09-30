@@ -1,0 +1,36 @@
+name: Pass the artifact
+
+on: [pull_request]
+
+jobs:
+  job_1:
+    name: Create File
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create a file
+        run: |
+          echo "Hello World" > hello.txt
+      - name: Upload the file
+        uses: actions/upload-artifact@v2
+        with:
+          name: bundle
+          path: hello.txt
+
+  job_2:
+    name: Echo and modify the file
+    needs: job_1
+    runs-on: windows-latest
+    steps:
+      - name: Download the bundle
+        uses: actions/download-artifact@v2
+        with:
+          name: bundle
+      - name: Echo and modify
+        run: |
+          cat hello.txt
+          echo "More" >> hello.txt
+      - name: Upload the file (again)
+        uses: actions/upload-artifact@v2
+        with:
+          name: bundle
+          path: hello.txt
