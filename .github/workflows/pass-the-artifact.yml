@@ -32,5 +32,5 @@ jobs:
       - name: Upload the file (again)
         uses: actions/upload-artifact@v2
         with:
-          name: bundle
-          path: hello.txt
+          name: bundlejunkyfile
+          path: junkyfile.txt
